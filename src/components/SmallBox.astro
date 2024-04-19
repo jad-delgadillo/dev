@@ -17,7 +17,7 @@ const { title, publishedAt, description, href, tags } = Astro.props;
   data-astro-prefetch
 >
   <div class="flex w-full justify-between gap-3 flex-row items-start">
-    <p class="font-semibold">{title}</p>
+    <p class="font-medium">{title}</p>
     <div class="flex flex-row items-center gap-2">
       {
         publishedAt ? (
@@ -47,7 +47,7 @@ const { title, publishedAt, description, href, tags } = Astro.props;
     </div>
   </div>
   <div class="flex flex-col text-neutral-500">
-    <p class="font-semibold">Tech Stack</p>
+    <p class="font-medium">Tech Stack</p>
     {
       tags ? (
         <div class=" flex flex-row flex-wrap gap-2">
