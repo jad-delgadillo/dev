@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FloatingBox from '../components/SmallBox.astro';
+import { Config } from '../config';
+import { Image } from 'astro:assets';
+---
+
+<Layout title="Jorge Delgadillo">
+  <div class="flex mx-auto justify-center items-center md:mt-10 mt-16">
+    <div class="w-4/5 flex flex-col gap-8">
+      <h1 class="text-2xl">hey, I'm Jorge 👨‍💻</h1>
+      <p>
+        I'm a Full-Stack developer, optimist, and community builder. I currently
+        work as the VP of Product at Vercel, where I help teach the Next.js
+        logomarkNext.js community, an open-source web framework built with
+        React.
+      </p>
+      <div class="">
+        <img
+          class="rounded-lg w-1/2"
+          alt="A cat sleeping in the sun."
+          src="https://res.cloudinary.com/dzepeibjw/image/upload/f_auto,q_auto/v1/Aldem-01/photos/eticc4vfd7pnrq6pm6df"
+        />
+      </div>
+      <p>
+        I create educational content for developers, teaching them about web
+        development, JavaScript and TypeScript, React and Next.js, and more.
+        This comes in all forms: blog posts, videos, tweets, conference talks,
+        and workshops. You can watch some of my favorites below.
+      </p>
+      <div>
+        <!-- <h1 class="w-full border-b border-b-neutral-700">Selected Work</h1> -->
+        <article class="flex flex-col gap-8">
+          <header class="flex w-full flex-row justify-between gap-2">
+            <h3 class="text-2xl border-b border-b-neutral-200 w-full">
+              Selected Work
+            </h3>
+            <!-- <a
+              href={Config.me.projectLink}
+              class="text-sm text-primary underline decoration-dashed underline-offset-8"
+              target="_self"
+              rel="noreferrer"
+              >See all projects
+            </a> -->
+          </header>
+          <section
+            class="grid grid-cols-1 gap-4 sm:grid-cols-2 justify-center items-stretch"
+          >
+            {
+              Object.keys(Config.projects).map((project) => (
+                <FloatingBox
+                  title={project}
+                  href={
+                    Config.projects[project as keyof typeof Config.projects].url
+                  }
+                  tags={
+                    Config.projects[project as keyof typeof Config.projects]
+                      .tags
+                  }
+                />
+              ))
+            }
+          </section>
+        </article>
+      </div>
+    </div>
+  </div>
+</Layout>

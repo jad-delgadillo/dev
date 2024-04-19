@@ -1,0 +1,32 @@
+---
+// Assuming you've imported Config from a relevant source
+import { Config } from '../config';
+---
+
+<main>
+  <div
+    class="flex text-black w-screen left-0 right-0 fixed -bottom-1 z-[100] justify-between mx-auto bg-white max-w-4xl p-4 rounded-lg"
+  >
+    <h1 class="cursor-default">Say hi 👋</h1>
+    <div class="flex gap-4 items-center justify-center">
+      {
+        Object.entries(Config.socials).map(([key, value]) => (
+          <div class="flex items-center justify-center hover:text-neutral-400">
+            <a
+              target="_blank"
+              title={value.name}
+              href={value.url}
+              class="flex items-center gap-2 "
+            >
+              <img
+                src={value.icon}
+                alt={value.name}
+                class="h-5 w-5 hover:text-neutral-500 transition-all cursor-ne-resize "
+              />
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</main>

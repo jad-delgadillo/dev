@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+
+  return projects.map((project: { slug: any }) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<Layout
+  title={project.data.title}
+  description={project.data.description}
+  og_title={project.data.title}
+  og_description={project.data.description}
+  og_type="article"
+>
+  <article class="prose mx-auto flex w-full max-w-prose flex-col gap-4">
+    <h1 class="mb-0">
+      {project.data.title}
+    </h1>
+    <p class="mt-0 mb-1">{project.data.description}</p>
+    <div class="divider m-0"></div>
+    <Content />
+  </article>
+</Layout>

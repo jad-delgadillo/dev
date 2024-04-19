@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostBox from '../../components/PostBox.astro';
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('posts')).sort(
+  (
+    a: { data: { publishedAt: string | number | Date } },
+    b: { data: { publishedAt: string | number | Date } },
+  ) =>
+    new Date(b.data.publishedAt).getTime() -
+    new Date(a.data.publishedAt).getTime(),
+);
+---
+
+<Layout og_type="website">
+  <div>
+    {
+      posts.map(
+        (project: {
+          data: { title: any; publishedAt: any; description: any };
+          slug: any;
+        }) => (
+          <>
+            <div class="divider my-2" />
+            <PostBox
+              title={project.data.title}
+              publishedAt={project.data.publishedAt}
+              description={project.data.description}
+              href={project.slug}
+            />
+          </>
+        ),
+      )
+    }
+  </div>
+</Layout>
