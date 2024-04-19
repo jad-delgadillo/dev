@@ -11,18 +11,21 @@ import { Config } from '../config';
     <div class="flex gap-4 items-center justify-center">
       {
         Object.entries(Config.socials).map(([key, value]) => (
-          <div class="flex items-center justify-center hover:text-neutral-400">
+          <div class="flex items-center justify-center ">
             <a
               target="_blank"
               title={value.name}
               href={value.url}
               class="flex items-center gap-2 "
             >
-              <img
-                src={value.icon}
-                alt={value.name}
-                class="h-5 w-5 hover:text-neutral-500 transition-all cursor-ne-resize "
-              />
+              <svg
+                viewBox={value.viewBox}
+                class="h-5 w-5 hover:fill-neutral-500 transition-all cursor-ne-resize"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d={value.iconPath} />
+              </svg>
             </a>
           </div>
         ))
