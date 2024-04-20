@@ -15,12 +15,17 @@ import { Image } from 'astro:assets';
           height="311"
           class="rounded-lg"
           alt="A picture of me in the Pyrenees mountains."
+          srcset="
+                https://res.cloudinary.com/dzepeibjw/image/upload/w_234,f_auto,q_auto/v1/Aldem-01/photos/eticc4vfd7pnrq6pm6df 234w,
+                https://res.cloudinary.com/dzepeibjw/image/upload/w_468,f_auto,q_auto/v1/Aldem-01/photos/eticc4vfd7pnrq6pm6df 468w"
+          sizes="(max-width: 768px) 234px, 468px"
           src="https://res.cloudinary.com/dzepeibjw/image/upload/f_auto,q_auto/v1/Aldem-01/photos/eticc4vfd7pnrq6pm6df"
         />
         <p class="text-sm text-neutral-600 mt-1">
           Creative, Problem Solver, Engineer, Founder, Storyteller.
         </p>
       </div>
+
       <p
         class="md:text-5xl text-2xl font-medium md:w-5/6 md:my-40 my-10 leading-tight"
       >
