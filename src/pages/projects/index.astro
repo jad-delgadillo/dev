@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PostBox from '../../components/PostBox.astro';
+import FloatingBox from '../../components/SmallBox.astro';
+import { Config } from '../../config';
 import { getCollection } from 'astro:content';
 const posts = (await getCollection('posts')).sort(
   (
@@ -13,7 +15,27 @@ const posts = (await getCollection('posts')).sort(
 ---
 
 <Layout og_type="website">
-  <div>
+  <div class="h-screen w-screen p-3 justify-center flex flex-col">
+    <section
+    class="grid grid-cols-1 gap-4 sm:grid-cols-2  justify-center items-stretch md:mb-0 mb-10"
+  >
+    {
+      Object.keys(Config.projects).map((project) => (
+        <FloatingBox
+          title={project}
+          href={
+            Config.projects[project as keyof typeof Config.projects].url
+          }
+          tags={
+            Config.projects[project as keyof typeof Config.projects]
+              .tags
+          }
+        />
+      ))
+    }
+  </section>
+  </div>
+  <!-- <div>
     {
       posts.map(
         (project: {
@@ -32,5 +54,6 @@ const posts = (await getCollection('posts')).sort(
         ),
       )
     }
-  </div>
+  </div> -->
+  
 </Layout>
